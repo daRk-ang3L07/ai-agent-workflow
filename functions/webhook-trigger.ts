@@ -89,7 +89,7 @@ export default async function handler(req: Request, res: Response) {
       insert_workflow_runs_one: { id: string };
     }>(
       gql`
-        mutation CreateWebhookRun($workflowId: uuid!, $payload: jsonb) {
+        mutation CreateWebhookRun($workflowId: uuid!) {
           insert_workflow_runs_one(
             object: {
               workflow_id: $workflowId
@@ -101,7 +101,7 @@ export default async function handler(req: Request, res: Response) {
           }
         }
       `,
-      { workflowId, payload }
+      { workflowId }
     );
 
     const workflowRunId = runData.insert_workflow_runs_one.id;
