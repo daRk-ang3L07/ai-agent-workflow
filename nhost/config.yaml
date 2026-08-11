@@ -1,5 +1,5 @@
 version: 3
 endpoint: http://localhost:1337/v1/graphql
 admin_secret: admin
-metadata_directory: metadata
+metadata_directory: metadata.yaml
 migrations_directory: migrations
