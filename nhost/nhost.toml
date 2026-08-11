@@ -31,7 +31,7 @@
   version = 'v2.44.0-ce'
   adminSecret = '{{ secrets.HASURA_ADMIN_SECRET }}'
 
-  [hasura.jwtSecrets]
+  [[hasura.jwtSecrets]]
     type = 'HS256'
     key = '{{ secrets.HASURA_JWT_SECRET }}'
 
