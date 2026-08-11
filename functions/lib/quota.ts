@@ -100,7 +100,6 @@ export async function reserveQuota(orgId: string): Promise<QuotaCheckResult> {
       mutation AtomicReserveQuota(
         $orgId: uuid!
         $maxAllowed: Int!
-        $currentTotal: Int!
       ) {
         update_organizations(
           where: {
@@ -120,7 +119,6 @@ export async function reserveQuota(orgId: string): Promise<QuotaCheckResult> {
     {
       orgId,
       maxAllowed: org.quota_calls_allowed,
-      currentTotal,
     }
   );
 
