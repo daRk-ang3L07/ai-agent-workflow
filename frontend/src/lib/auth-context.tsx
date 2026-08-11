@@ -75,25 +75,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (session?.user) {
         setUser(session.user);
         setIsAuthenticated(true);
-        fetchOrgs(true);
+        fetchOrgs(true).finally(() => setIsLoading(false));
       } else {
         setUser(null);
         setIsAuthenticated(false);
         setCurrentOrgIdState(null);
         setOrgs([]);
+        setIsLoading(false);
       }
-      setIsLoading(false);
     });
-
-    // Check initial auth state
-    const session = nhost.auth.getSession();
-    if (session?.user) {
-      setUser(session.user);
-      setIsAuthenticated(true);
-      fetchOrgs(true).finally(() => setIsLoading(false));
-    } else {
-      setIsLoading(false);
-    }
 
     return () => unsubscribe();
   }, [fetchOrgs]);

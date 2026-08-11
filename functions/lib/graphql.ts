@@ -1,8 +1,8 @@
 // functions/lib/graphql.ts
 // Shared Hasura admin GraphQL client for server-side function use
 
-const HASURA_ENDPOINT = process.env.HASURA_GRAPHQL_ENDPOINT!;
-const ADMIN_SECRET   = process.env.HASURA_ADMIN_SECRET!;
+const HASURA_ENDPOINT = process.env.HASURA_GRAPHQL_ENDPOINT || process.env.NHOST_GRAPHQL_URL!;
+const ADMIN_SECRET   = process.env.HASURA_GRAPHQL_ADMIN_SECRET || process.env.NHOST_ADMIN_SECRET || process.env.HASURA_ADMIN_SECRET!;
 
 export async function adminQuery<T = any>(
   query: string,
