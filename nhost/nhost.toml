@@ -8,21 +8,3 @@
   [[hasura.jwtSecrets]]
     type = 'HS256'
     key = '{{ secrets.HASURA_GRAPHQL_JWT_SECRET }}'
-
-[functions]
-  [functions.node]
-    version = 22
-
-[auth]
-  version = '0.37.1'
-
-  [auth.redirections]
-    clientUrl = 'http://localhost:3000'
-
-[postgres]
-  version = '16-v5.3.0'
-
-[storage]
-  version = '0.6.1'
-
-
