@@ -158,10 +158,10 @@ export const CREATE_WORKFLOW = gql`
 `;
 
 export const UPDATE_WORKFLOW = gql`
-  mutation UpdateWorkflow($id: uuid!, $name: String!, $description: String, $isActive: Boolean) {
+  mutation UpdateWorkflow($id: uuid!, $name: String!, $description: String) {
     update_workflows_by_pk(
       pk_columns: { id: $id }
-      _set: { name: $name, description: $description, is_active: $isActive, updated_at: "now()" }
+      _set: { name: $name, description: $description, updated_at: "now()" }
     ) {
       id
       name
