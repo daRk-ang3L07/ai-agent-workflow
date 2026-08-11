@@ -1,31 +1,3 @@
-[global]
-  [[global.environment]]
-  name = 'HASURA_GRAPHQL_ENDPOINT'
-  value = ''
-
-  [[global.environment]]
-  name = 'HASURA_ADMIN_SECRET'
-  value = ''
-
-  [[global.environment]]
-  name = 'LLM_API_KEY'
-  value = ''
-
-  [[global.environment]]
-  name = 'LLM_PROVIDER'
-  value = 'groq'
-
-  [[global.environment]]
-  name = 'GROQ_MODEL'
-  value = 'llama-3.1-8b-instant'
-
-  [[global.environment]]
-  name = 'SLACK_WEBHOOK_URL'
-  value = ''
-
-  [[global.environment]]
-  name = 'HASURA_EVENT_SECRET'
-  value = ''
 
 [hasura]
   version = 'v2.44.0-ce'
