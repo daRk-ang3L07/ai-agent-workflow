@@ -1,0 +1,62 @@
+[global]
+  [[global.environment]]
+  name = 'HASURA_GRAPHQL_ENDPOINT'
+  value = ''
+
+  [[global.environment]]
+  name = 'HASURA_ADMIN_SECRET'
+  value = ''
+
+  [[global.environment]]
+  name = 'LLM_API_KEY'
+  value = ''
+
+  [[global.environment]]
+  name = 'LLM_PROVIDER'
+  value = 'groq'
+
+  [[global.environment]]
+  name = 'GROQ_MODEL'
+  value = 'llama-3.1-8b-instant'
+
+  [[global.environment]]
+  name = 'SLACK_WEBHOOK_URL'
+  value = ''
+
+  [[global.environment]]
+  name = 'HASURA_EVENT_SECRET'
+  value = ''
+
+[hasura]
+  version = 'v2.44.0-ce'
+  adminSecret = '{{ secrets.HASURA_ADMIN_SECRET }}'
+
+  [hasura.jwtSecrets]
+    type = 'HS256'
+    key = '{{ secrets.HASURA_JWT_SECRET }}'
+
+[functions]
+  [functions.node]
+    version = 22
+
+[auth]
+  version = '0.37.1'
+
+  [auth.redirections]
+    clientUrl = 'http://localhost:3000'
+
+  [auth.signIn]
+    [auth.signIn.email]
+      passwordless = false
+      [auth.signIn.email.password]
+        hibpEnabled = false
+
+[postgres]
+  version = '16-v5.3.0'
+
+[storage]
+  version = '0.6.1'
+
+[observability]
+  [observability.grafana]
+    adminPassword = '{{ secrets.GRAFANA_ADMIN_PASSWORD }}'
