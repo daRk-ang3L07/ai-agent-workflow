@@ -169,7 +169,7 @@ export default function WorkflowDetailPage() {
                   <button
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        `curl -X POST ${process.env.NEXT_PUBLIC_FUNCTIONS_URL}/webhook-trigger -H 'Content-Type: application/json' -d '{"workflow_id":"${id}","token":"${webhookTrigger.webhook_token}","payload":{}}'`
+                        `curl -X POST ${process.env.NEXT_PUBLIC_FUNCTIONS_URL}/v1/webhook-trigger -H "Content-Type: application/json" -d "{\\"workflow_id\\":\\"${id}\\",\\"token\\":\\"${webhookTrigger.webhook_token}\\",\\"payload\\":{}}"`
                       );
                       toast.success('Curl command copied!');
                     }}
