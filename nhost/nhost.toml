@@ -45,12 +45,6 @@
   [auth.redirections]
     clientUrl = 'http://localhost:3000'
 
-  [auth.signIn]
-    [auth.signIn.email]
-      passwordless = false
-      [auth.signIn.email.password]
-        hibpEnabled = false
-
 [postgres]
   version = '16-v5.3.0'
 
