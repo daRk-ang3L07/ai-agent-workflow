@@ -81,7 +81,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   className="input-field !pl-10"
-                  placeholder="ownerA@test.com"
+                  placeholder="Enter your email"
                   required
                 />
               </div>
@@ -133,12 +133,7 @@ export default function LoginPage() {
             </button>
           </div>
 
-          {/* Demo credentials hint */}
-          <div className="mt-6 p-3 rounded-xl bg-indigo-950/30 border border-indigo-900/30">
-            <p className="text-xs text-gray-500 text-center">
-              <span className="text-indigo-400">Org A Demo:</span> ownerA@test.com / password123
-            </p>
-          </div>
+
         </div>
       </div>
     </div>

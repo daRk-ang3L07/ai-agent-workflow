@@ -28,7 +28,7 @@ export function Sidebar() {
   const [orgDropdown, setOrgDropdown] = React.useState(false);
 
   return (
-    <aside className="sidebar w-64 flex flex-col h-full fixed left-0 top-0 z-30">
+    <aside className="sidebar w-full md:w-64 flex flex-col h-auto md:h-full relative md:fixed left-0 top-0 z-30">
       {/* Logo */}
       <div className="p-5 border-b border-indigo-900/20">
         <div className="flex items-center gap-2">

@@ -73,11 +73,11 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Stats */}
-        <div className="col-span-2 space-y-6">
+        <div className="md:col-span-2 space-y-6">
           {/* Stats row */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[
               { label: 'Total Workflows', value: workflows.length, icon: Workflow, color: 'text-indigo-400' },
               { label: 'Active', value: activeWorkflows, icon: Activity, color: 'text-emerald-400' },

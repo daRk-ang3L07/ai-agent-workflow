@@ -28,12 +28,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   if (!isAuthenticated) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-animated">
+    <div className="min-h-screen bg-gradient-animated flex flex-col md:flex-row">
       <div className="orb orb-violet" style={{ opacity: 0.07 }} />
       <div className="orb orb-cyan" style={{ opacity: 0.05 }} />
       <Sidebar />
-      <main className="ml-64 min-h-screen relative z-10">
-        <div className="p-8">{children}</div>
+      <main className="flex-1 md:ml-64 min-h-screen relative z-10 w-full overflow-x-hidden">
+        <div className="p-4 md:p-8">{children}</div>
       </main>
     </div>
   );

@@ -99,9 +99,9 @@ export default function WorkflowDetailPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Steps column */}
-        <div className="col-span-2 space-y-3">
+        <div className="md:col-span-2 space-y-3">
           <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Steps ({workflow.workflow_steps?.length})</h2>
           {workflow.workflow_steps?.map((step: any, i: number) => {
             const Icon = STEP_ICONS[step.step_type] || Lock;
