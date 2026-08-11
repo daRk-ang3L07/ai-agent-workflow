@@ -109,6 +109,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const currentOrg = orgs.find(m => m.organization.id === currentOrgId) || orgs[0] || null;
   const currentRole = currentOrg?.role || null;
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && currentRole) {
+      window.localStorage.setItem('currentRole', currentRole);
+      // Optional: apolloClient.resetStore() if data leaks between orgs
+    }
+  }, [currentRole]);
+
   const signOut = async () => {
     await nhost.auth.signOut();
   };

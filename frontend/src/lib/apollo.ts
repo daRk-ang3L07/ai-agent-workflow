@@ -16,7 +16,10 @@ const HASURA_WS_URL = HASURA_URL.replace('https://', 'wss://').replace('http://'
 const authLink = setContext(async (_, { headers }) => {
   const session = nhost.auth.getSession();
   const token = session?.accessToken;
-  const userRole = (session?.user as any)?.defaultRole || 'viewer';
+  let userRole = 'user';
+  if (typeof window !== 'undefined') {
+    userRole = window.localStorage.getItem('currentRole') || 'user';
+  }
 
   return {
     headers: {
@@ -37,7 +40,10 @@ const wsLink = typeof window !== 'undefined'
         connectionParams: () => {
           const session = nhost.auth.getSession();
           const token = session?.accessToken;
-          const userRole = (session?.user as any)?.defaultRole || 'viewer';
+          let userRole = 'user';
+          if (typeof window !== 'undefined') {
+            userRole = window.localStorage.getItem('currentRole') || 'user';
+          }
           return {
             headers: {
               ...(token ? { Authorization: `Bearer ${token}` } : {}),

@@ -24,7 +24,8 @@ export default function LoginPage() {
         const { error } = await nhost.auth.signIn({ email, password });
         if (error) throw new Error(error.message);
         toast.success('Welcome back!');
-        router.push('/dashboard');
+        // Refresh the page so context fully resets
+        window.location.href = '/dashboard';
       } else {
         const { error } = await nhost.auth.signUp({ email, password });
         if (error) throw new Error(error.message);

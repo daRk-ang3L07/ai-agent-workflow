@@ -33,6 +33,13 @@ sources:
                   name: risk_assessments
         # Expose org_usage_this_month view through relationship
         select_permissions:
+          - role: user
+            permission:
+              columns: "*"
+              filter:
+                org_members:
+                  user_id:
+                    _eq: X-Hasura-User-Id
           - role: owner
             permission:
               columns: [id, name, slug, quota_calls_allowed, quota_calls_used, quota_calls_pending, quota_reset_at, created_at]
@@ -70,6 +77,12 @@ sources:
             using:
               foreign_key_constraint_on: user_id
         select_permissions:
+          - role: user
+            permission:
+              columns: "*"
+              filter:
+                user_id:
+                  _eq: X-Hasura-User-Id
           # Simplified: user can see members of their own org
           - role: owner
             permission:
