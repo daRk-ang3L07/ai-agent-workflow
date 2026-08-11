@@ -98,27 +98,23 @@ export default async function handler(req: Request, res: Response) {
     }
 
     // ── Execute the run (this handles all step logic, quota confirmation, etc.)
-    // We run this async so Hasura Action gets a fast response.
-    // The subscription shows live updates.
-    setImmediate(async () => {
-      try {
-        await executeRun({ workflowRunId, orgId, startingStepOrder: 0 });
-      } catch (err: any) {
-        console.error('[trigger-workflow-run] Execution error:', err.message);
-        await releaseQuota(orgId);
-        await adminQuery(
-          gql`
-            mutation FailRun($id: uuid!) {
-              update_workflow_runs_by_pk(
-                pk_columns: { id: $id }
-                _set: { status: failed, completed_at: "now()" }
-              ) { id }
-            }
-          `,
-          { id: workflowRunId }
-        );
-      }
-    });
+    try {
+      await executeRun({ workflowRunId, orgId, startingStepOrder: 0 });
+    } catch (err: any) {
+      console.error('[trigger-workflow-run] Execution error:', err.message);
+      await releaseQuota(orgId);
+      await adminQuery(
+        gql`
+          mutation FailRun($id: uuid!) {
+            update_workflow_runs_by_pk(
+              pk_columns: { id: $id }
+              _set: { status: failed, completed_at: "now()" }
+            ) { id }
+          }
+        `,
+        { id: workflowRunId }
+      );
+    }
 
     return res.status(200).json({
       success: true,
