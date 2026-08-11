@@ -29,11 +29,6 @@
 
 [hasura]
   version = 'v2.44.0-ce'
-  adminSecret = '{{ secrets.HASURA_ADMIN_SECRET }}'
-
-  [[hasura.jwtSecrets]]
-    type = 'HS256'
-    key = '{{ secrets.HASURA_JWT_SECRET }}'
 
 [functions]
   [functions.node]
@@ -51,6 +46,4 @@
 [storage]
   version = '0.6.1'
 
-[observability]
-  [observability.grafana]
-    adminPassword = '{{ secrets.GRAFANA_ADMIN_PASSWORD }}'
+
