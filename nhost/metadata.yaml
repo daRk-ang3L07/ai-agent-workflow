@@ -661,8 +661,6 @@ actions:
           type: uuid!
         - name: token
           type: String!
-        - name: payload
-          type: jsonb
     comment: "Public webhook endpoint — validates token, starts run"
 
 custom_types:
