@@ -114,21 +114,19 @@ export default async function handler(req: Request, res: Response) {
       return res.status(500).json({ success: false, message: err.message });
     }
 
-    // ── Respond immediately, then execute
-    res.status(200).json({
+    // ── Execute the run before responding so serverless doesn't kill the process
+    try {
+      await executeRun({ workflowRunId, orgId, startingStepOrder: 0 });
+    } catch (err: any) {
+      console.error('[webhook-trigger] Execution error:', err.message);
+      await releaseQuota(orgId);
+    }
+
+    // ── Respond
+    return res.status(200).json({
       success: true,
       workflow_run_id: workflowRunId,
       message: 'Webhook received — workflow run started',
-    });
-
-    // Execute after response is sent
-    setImmediate(async () => {
-      try {
-        await executeRun({ workflowRunId, orgId, startingStepOrder: 0 });
-      } catch (err: any) {
-        console.error('[webhook-trigger] Execution error:', err.message);
-        await releaseQuota(orgId);
-      }
     });
 
   } catch (err: any) {
